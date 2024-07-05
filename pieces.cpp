@@ -222,7 +222,7 @@ int pieces[7][4][5][5] = {
 };
 
 
-struct Pieces {
+struct Piece {
     auto getBlockType(int piece, int rotation, int x, int y) -> int{
         return pieces[piece][rotation][x][y];
     };
