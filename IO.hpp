@@ -5,19 +5,19 @@
 #include <SFML/Window.hpp>
 
 struct IO {
-
     sf::RenderWindow* window;
 
     IO();
+    ~IO(); // Destructor to clean up resources
 
-    auto clearWindow() -> void;
-    auto drawRectangle(int x, int y, int width, int height, sf::Color color) -> void;
-    auto getScreenHeight() -> int;
-    auto updateScreen() -> void;
-    auto pollkey() -> int;
-    auto getKey() -> int;
-    auto isKeyDown(int pKey) -> int;
-    auto initGraph() -> int;
+    void clearWindow();
+    void drawRectangle(int x, int y, int width, int height, sf::Color color);
+    int getScreenHeight();
+    void updateScreen();
+    int pollkey();
+    int getKey();
+    int isKeyDown(int pKey);
+    int initGraph();
 };
 
 #endif // _IO_

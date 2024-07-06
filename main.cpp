@@ -1,12 +1,10 @@
-#include "game.cpp"
-#include "pieces.cpp"
-#include "board.cpp"
-#include "io.cpp"
+#include "game.hpp"
 #include <SFML/Graphics.hpp>
 
 auto main() -> int {
 
     IO io;
+    int waitTime = 700;
     int screenHeight = io.getScreenHeight();
     Piece pieces;
     Board board = Board(&pieces, io.window);

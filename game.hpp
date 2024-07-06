@@ -3,7 +3,7 @@
 
 #include "board.hpp"
 #include "pieces.hpp"
-#include "io.hpp"
+#include "IO.hpp"
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include <cstdlib>
