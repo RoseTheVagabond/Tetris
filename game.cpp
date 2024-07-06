@@ -6,6 +6,7 @@ int const waitTime = 700;
 
 struct Game {
 
+    int const boardLineWidth = 10;
     int screenHeight = 0;
     Board* board;
     Piece* pieces;
@@ -80,7 +81,31 @@ struct Game {
     }
 
     auto drawBoard() -> void {
+        //walls coordinates
+        int leftWallX = board->boardXPosition - (board->blockSize);
+        int rightWallX = board->boardXPosition + board->boardWidth * board->blockSize;
+        int wallY = screenHeight -(board->boardHeight * board->blockSize);
 
+        io->drawRectangle(leftWallX, wallY, leftWallX + boardLineWidth, screenHeight - 1, sf::Color(142, 202, 230));
+        io->drawRectangle(rightWallX, wallY, rightWallX + boardLineWidth, screenHeight - 1, sf::Color(142, 202, 230));
+
+        for(int i = 0; i < board->boardHeight; i++) {
+            for(int j = 0; j < board->boardWidth; j++) {
+                if(board->isEmptyBlock(i, j)) {
+                    io->drawRectangle(board->getPiecePositionX(j),
+                                      board->getPiecePositionY(i),
+                                      board->getPiecePositionX(j) + board->blockSize - 1,
+                                      board->getPiecePositionY(i) + board->blockSize - 1,
+                                      sf::Color(33, 158, 188));
+                }
+            }
+        }
+    }
+
+    auto drawScene() -> void {
+        drawBoard();
+        drawPiece(currentPieceY, currentPieceX, currentPieceType, currentPieceRotation);
+        drawPiece(nextPieceY, nextPieceX, nextPieceType, nextPieceRotation);
     }
 
 };
