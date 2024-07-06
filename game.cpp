@@ -1,5 +1,6 @@
 #include "board.cpp"
 #include "pieces.cpp"
+#include "IO.cpp"
 #include <SFML/Graphics.hpp>
 
 int const waitTime = 700;
@@ -70,10 +71,10 @@ struct Game {
                     colour = sf::Color(251, 133, 0);
 
                 if(pieces->getBlockType(pieceType, rotation, i, j) != 0) {
-                    io->drawRectangle(pixelsX + j * board->blockSize,
-                                      pixelsY + i * board->blockSize,
-                                      (pixelsX + j * board->blockSize) + board->blockSize - 1,
-                                      (pixelsY + i * board->blockSize) + board->blockSize - 1,
+                    io->drawRectangle(pixelsX,
+                                      pixelsY,
+                                      board->blockSize - 1,
+                                      board -> blockSize - 1,
                                       colour);
                 }
             }
@@ -86,16 +87,16 @@ struct Game {
         int rightWallX = board->boardXPosition + board->boardWidth * board->blockSize;
         int wallY = screenHeight -(board->boardHeight * board->blockSize);
 
-        io->drawRectangle(leftWallX, wallY, leftWallX + boardLineWidth, screenHeight - 1, sf::Color(142, 202, 230));
-        io->drawRectangle(rightWallX, wallY, rightWallX + boardLineWidth, screenHeight - 1, sf::Color(142, 202, 230));
+        io->drawRectangle(leftWallX, wallY, boardLineWidth, screenHeight - 1, sf::Color(142, 202, 230));
+        io->drawRectangle(rightWallX, wallY, boardLineWidth, screenHeight - 1, sf::Color(142, 202, 230));
 
         for(int i = 0; i < board->boardHeight; i++) {
             for(int j = 0; j < board->boardWidth; j++) {
-                if(board->isEmptyBlock(i, j)) {
+                if(!board->isEmptyBlock(i, j)) {
                     io->drawRectangle(board->getPiecePositionX(j),
                                       board->getPiecePositionY(i),
-                                      board->getPiecePositionX(j) + board->blockSize - 1,
-                                      board->getPiecePositionY(i) + board->blockSize - 1,
+                                      board->blockSize - 1,
+                                      board->blockSize - 1,
                                       sf::Color(33, 158, 188));
                 }
             }
