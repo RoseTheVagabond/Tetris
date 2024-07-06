@@ -22,11 +22,11 @@ struct Board {
         boardYPosition = window->getSize().y / 2 - boardHeight * blockSize / 2;
     }
 
-    auto storePiece(int x, int y, int piece, int rotation)-> void {
-        for(int iPiece = x, i = 0; iPiece < i + blocksInPiece; iPiece++, i++) {
-            for(int jPiece = y, j = 0; jPiece < j + blocksInPiece; jPiece++, j++) {
+    auto storePiece(int y, int x, int piece, int rotation)-> void {
+        for(int iBoard = y, i = 0; iBoard < i + blocksInPiece; iBoard++, i++) {
+            for(int jBoard = x, j = 0; jBoard < j + blocksInPiece; jBoard++, j++) {
                 if(pieces->getBlockType(piece, rotation, i, j) != EMPTY) {
-                    board[iPiece][jPiece] = FULL;
+                    board[iBoard][jBoard] = FULL;
                 }
             }
         }
@@ -49,5 +49,35 @@ struct Board {
         }
     }
 
+    auto isEmptyBlock(int y, int x) -> bool {
+        return board[y][x] == EMPTY;
+    }
 
+    auto isMovementPossible(int y, int x, int piece, int rotation) -> bool {
+        for(int iBoard = y, i = 0; iBoard < i + blocksInPiece; iBoard++, i++) {
+            for(int jBoard = x, j = 0; jBoard < j + blocksInPiece; jBoard++, j++) {
+                if(pieces->getBlockType(piece, rotation, i, j) != EMPTY) {
+                    if(iBoard < 0 || iBoard >= boardHeight || jBoard < 0 || jBoard >= boardWidth) {
+                        return false;
+                    }
+                    if(board[iBoard][jBoard] == FULL || board[iBoard][jBoard] == ROTATION) {
+                        return false;
+                    }
+                    if(!isEmptyBlock(iBoard, jBoard)) {
+                        return false;
+                    }
+                }
+
+            }
+        }
+        return true;
+    }
+
+    auto getPiecePositionX(int piecePositionX) -> int {
+        return boardXPosition + piecePositionX * blockSize;
+    }
+
+    auto getPiecePositionY(int piecePositionY) -> int {
+        return boardYPosition + piecePositionY * blockSize;
+    }
 };

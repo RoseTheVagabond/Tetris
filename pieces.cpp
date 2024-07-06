@@ -223,10 +223,10 @@ int pieces[7][4][5][5] = {
 
 
 struct Piece {
-    auto getBlockType(int piece, int rotation, int x, int y) -> int{
-        return pieces[piece][rotation][x][y];
+    auto getBlockType(int piece, int rotation, int y, int x) -> int{
+        return pieces[piece][rotation][y][x];
     };
-    auto getInitialPosition (int pPiece, int pRotation) -> std::vector<int> {
+    auto getInitialPosition (int piece, int rotation) -> std::vector<int> {
         return {-2, -2};
     };
 };
