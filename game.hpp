@@ -7,14 +7,15 @@
 #include <SFML/Graphics.hpp>
 #include <ctime>
 #include <cstdlib>
+#include <memory> // Include memory header for smart pointers
 
 struct Game {
 
     int const boardLineWidth = 10;
     int screenHeight = 0;
-    Board* board;
-    Piece* pieces;
-    IO* io;
+    std::shared_ptr<Board> board; // Use shared_ptr for Board
+    std::shared_ptr<Piece> pieces; // Use shared_ptr for Piece
+    std::shared_ptr<IO> io; // Use unique_ptr for IO
 
     // Current piece:
     int currentPieceType = 0;
@@ -28,7 +29,7 @@ struct Game {
     int nextPieceX = 0;
     int nextPieceY = 0;
 
-    Game(Board* board, Piece* pieces, IO* io, sf::RenderWindow* window);
+    Game(std::shared_ptr<Board> board, std::shared_ptr<Piece> pieces, std::shared_ptr<IO> io, sf::RenderWindow* window);
 
     auto getRandomNumber(int min, int max) -> int;
     auto initGame() -> void;

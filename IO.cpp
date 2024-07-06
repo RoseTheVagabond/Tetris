@@ -5,9 +5,7 @@ IO::IO() {
     initGraph();
 }
 
-IO::~IO() {
-    delete window; // Cleanup allocated window
-}
+IO::~IO() {}
 
 void IO::clearWindow() {
     window->clear(sf::Color(0, 0, 0));
@@ -56,7 +54,7 @@ int IO::isKeyDown(int pKey) {
 }
 
 int IO::initGraph() {
-    // Create a new window
-    window = new sf::RenderWindow(sf::VideoMode(640, 480), "Tetris");
+    // Create a new window using unique_ptr
+    window = std::make_unique<sf::RenderWindow>(sf::VideoMode(640, 480), "Tetris");
     return 0;
 }

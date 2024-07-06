@@ -3,9 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <memory> // Include memory header for smart pointers
 
 struct IO {
-    sf::RenderWindow* window;
+    std::unique_ptr<sf::RenderWindow> window; // Smart pointer for sf::RenderWindow
 
     IO();
     ~IO(); // Destructor to clean up resources

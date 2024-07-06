@@ -5,7 +5,7 @@
 
 int const waitTime = 700;
 
-Game::Game(Board* board, Piece* pieces, IO* io, sf::RenderWindow* window)
+Game::Game(std::shared_ptr<Board> board, std::shared_ptr<Piece> pieces, std::shared_ptr<IO> io, sf::RenderWindow* window)
         : board(board), pieces(pieces), io(io) {
     screenHeight = window->getSize().y;
 }

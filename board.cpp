@@ -1,10 +1,12 @@
 #include "board.hpp"
 
-Board::Board(Piece* pieces, sf::RenderWindow* window) : pieces(pieces), board(boardHeight, std::vector<int>(boardWidth)) {
+Board::Board(std::shared_ptr<Piece> pieces, sf::RenderWindow* window)
+        : pieces(pieces), window(window), board(boardHeight, std::vector<int>(boardWidth)) {
     boardXPosition = window->getSize().x / 2 - boardWidth * blockSize / 2;
     boardYPosition = window->getSize().y / 2 - boardHeight * blockSize / 2;
     initBoard();
 }
+
 
 auto Board::initBoard() -> void {
     for (int i = 0; i < boardHeight; i++) {

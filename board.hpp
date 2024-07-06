@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "pieces.hpp"
+#include "IO.hpp" // Include IO.hpp to use sf::RenderWindow
 
 struct Board {
 
@@ -14,12 +15,14 @@ struct Board {
     int const blocksInPiece = 5;
     enum { EMPTY = 0, FULL = 1, ROTATION = 2 };
 
-    Piece* pieces = nullptr;
+    std::shared_ptr<Piece> pieces; // Use shared_ptr for Piece
+    sf::RenderWindow* window; // Keep a raw pointer for window
     int boardXPosition = 0;
     int boardYPosition = 0;
     std::vector<std::vector<int>> board;
 
-    Board(Piece* pieces, sf::RenderWindow* window);
+    // Adjust the constructor to use shared_ptr and raw pointer
+    Board(std::shared_ptr<Piece> pieces, sf::RenderWindow* window);
 
     auto initBoard() -> void;
     auto storePiece(int y, int x, int piece, int rotation) -> void;
