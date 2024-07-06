@@ -4,7 +4,7 @@
 
 struct Board {
 
-    //Constant variables
+    //Constant fields
     int const boardWidth = 10;
     int const boardHeight = 20;
     int const blockSize = 20;
@@ -20,6 +20,15 @@ struct Board {
     Board(Piece *pieces, sf::RenderWindow *window) : pieces(pieces) {
         boardXPosition = window->getSize().x / 2 - boardWidth * blockSize / 2;
         boardYPosition = window->getSize().y / 2 - boardHeight * blockSize / 2;
+        initBoard();
+    }
+
+    auto initBoard() -> void {
+        for(int i = 0; i < boardHeight; i++) {
+            for(int j = 0; j < boardWidth; j++) {
+                board[i][j] = EMPTY;
+            }
+        }
     }
 
     auto storePiece(int y, int x, int piece, int rotation)-> void {
