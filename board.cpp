@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "pieces.cpp"
+#include "board.hpp"
 
 
 struct Board {

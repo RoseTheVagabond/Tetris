@@ -1,4 +1,5 @@
 #include <vector>
+#include "pieces.hpp"
 
 int pieces[7][4][5][5] = {
         //O piece

@@ -1,9 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
- static sf::RenderWindow* window;
 
 struct IO {
+
+    sf::RenderWindow* window;
+
     IO() {
         initGraph();
     }
