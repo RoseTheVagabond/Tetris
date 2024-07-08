@@ -11,5 +11,5 @@ FetchContent_declare(
 )
 FetchContent_MakeAvailable(sfml)
 
-add_executable(Tetris main.cpp pieces.cpp board.cpp game.cpp IO.cpp)
+add_executable(Tetris main.cpp)
 target_link_libraries(Tetris sfml-system sfml-window sfml-graphics)
