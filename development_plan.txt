@@ -1,0 +1,12 @@
+1. Create game loop
+2. Create grid
+3. Create blocks
+4. Move blocks
+5. Rotate blocks
+6. Checking for collisions
+7. Checking full rows
+8. Game over
+9. UI
+10. Score
+11. Next Block
+12. Sound
