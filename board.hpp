@@ -16,7 +16,7 @@ struct Board {
     enum { EMPTY = 0, FULL = 1, ROTATION = 2 };
 
     std::shared_ptr<Piece> pieces; // Use shared_ptr for Piece
-    sf::RenderWindow* window; // Keep a raw pointer for window
+    std::unique_ptr<sf::RenderWindow> window; // Keep a raw pointer for window
     int boardXPosition = 0;
     int boardYPosition = 0;
     std::vector<std::vector<int>> board;

@@ -5,7 +5,8 @@ IO::IO() {
     initGraph();
 }
 
-IO::~IO() {}
+IO::~IO() {
+}
 
 void IO::clearWindow() {
     window->clear(sf::Color(0, 0, 0));
