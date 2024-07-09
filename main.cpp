@@ -7,11 +7,10 @@ auto main() -> int {
     SetTargetFPS(60);
 
     Grid grid = Grid();
-    grid.print();
 
     while(!WindowShouldClose()) {
         BeginDrawing();
-        ClearBackground(grid.colors[1]);
+        ClearBackground(grid.colors[4]);
 
         grid.draw();
 

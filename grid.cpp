@@ -36,7 +36,7 @@ auto Grid::getCellColours() -> std::vector<Color> {
 auto Grid::draw() -> void {
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
-            DrawRectangle(j * cellSize, i * cellSize, cellSize, cellSize, colors[grid[i][j]]);
+            DrawRectangle(j * cellSize + 1, i * cellSize + 1, cellSize - 1, cellSize - 1, colors[grid[i][j]]);
         }
     }
 }
