@@ -28,7 +28,7 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 # Our Project
-add_executable(${PROJECT_NAME} main.cpp grid.cpp)
+add_executable(${PROJECT_NAME} main.cpp grid.cpp position.cpp)
 target_link_libraries(${PROJECT_NAME} raylib)
 
 # Web Configurations
