@@ -1,14 +1,22 @@
 #include <raylib.h>
+#include "grid.h"
 
 auto main() -> int {
-    Color darkBlue = {0, 29, 61, 255};
 
     InitWindow(300, 600, "Tetris");
-
     SetTargetFPS(60);
-    while(WindowShouldClose() == false) {
+
+    Grid grid = Grid();
+    grid.print();
+
+    while(!WindowShouldClose()) {
         BeginDrawing();
-        ClearBackground(darkBlue);
+        ClearBackground(grid.colors[1]);
+
+        grid.draw();
+
+
+
         EndDrawing();
     }
     CloseWindow();
