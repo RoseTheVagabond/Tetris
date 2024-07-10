@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include "grid.h"
 #include "colours.h"
+#include "tetrominos.cpp"
 
 auto main() -> int {
 
@@ -10,13 +11,14 @@ auto main() -> int {
 
     Grid grid = Grid();
 
+    LMino l = LMino();
+
     while(!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(colors[4]);
 
         grid.draw();
-
-
+        l.draw();
 
         EndDrawing();
     }
