@@ -11,14 +11,14 @@ auto main() -> int {
 
     Grid grid = Grid();
 
-    LMino l = LMino();
+    SMino block = SMino();
 
     while(!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(colors[4]);
 
         grid.draw();
-        l.draw();
+        block.draw();
 
         EndDrawing();
     }
