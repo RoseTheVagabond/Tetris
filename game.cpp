@@ -35,7 +35,7 @@ auto Game::draw() -> void{
 
 auto Game::handleInput() -> void {
     int keyPressed = GetKeyPressed();
-    if(gameOver && keyPressed != KEY_ZERO) {
+    if(gameOver && keyPressed == KEY_ENTER) {
         gameOver = false;
         reset();
     }
