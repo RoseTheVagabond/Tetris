@@ -1,7 +1,5 @@
 #include <raylib.h>
-#include "grid.h"
-#include "colours.h"
-#include "tetrominos.cpp"
+#include "game.h"
 
 auto main() -> int {
 
@@ -9,17 +7,13 @@ auto main() -> int {
     SetTargetFPS(60);
     auto colors = getCellColours();
 
-    Grid grid = Grid();
-
-    IMino block = IMino();
+    Game game = Game();
 
     while(!WindowShouldClose()) {
+        game.handleInput();
         BeginDrawing();
         ClearBackground(colors[4]);
-
-        grid.draw();
-        block.draw();
-
+        game.draw();
         EndDrawing();
     }
     CloseWindow();
