@@ -6,6 +6,7 @@ Game::Game() {
     tetrominos = getAllBlocks();
     currentBlock = getRandomBlock();
     nextBlock = getRandomBlock();
+    gameOver = false;
 }
 
 auto Game::getRandomBlock() -> Block{
@@ -34,6 +35,10 @@ auto Game::draw() -> void{
 
 auto Game::handleInput() -> void {
     int keyPressed = GetKeyPressed();
+    if(gameOver && keyPressed != KEY_ZERO) {
+        gameOver = false;
+        reset();
+    }
     switch(keyPressed) {
         case KEY_LEFT:
         case KEY_A:
@@ -56,24 +61,30 @@ auto Game::handleInput() -> void {
 }
 
 auto Game::moveBlockLeft() -> void{
-    currentBlock.move(0,-1);
-    if(isBlockOutside() || !blockFits()) {
-        currentBlock.move(0, 1);
+    if(!gameOver) {
+        currentBlock.move(0,-1);
+        if(isBlockOutside() || !blockFits()) {
+            currentBlock.move(0, 1);
+        }
     }
 }
 
 auto Game::moveBlockRight() -> void {
-    currentBlock.move(0, 1);
-    if(isBlockOutside() || !blockFits()) {
-        currentBlock.move(0, -1);
+    if(!gameOver) {
+        currentBlock.move(0, 1);
+        if(isBlockOutside() || !blockFits()) {
+            currentBlock.move(0, -1);
+        }
     }
 }
 
 auto Game::moveBlockDown() -> void{
-    currentBlock.move(1, 0);
-    if(isBlockOutside() || !blockFits()) {
-        currentBlock.move(-1, 0);
-        lockBlock();
+    if(!gameOver) {
+        currentBlock.move(1, 0);
+        if(isBlockOutside() || !blockFits()) {
+            currentBlock.move(-1, 0);
+            lockBlock();
+        }
     }
 }
 
@@ -88,9 +99,11 @@ auto Game::isBlockOutside() -> bool {
 }
 
 auto Game::rotateBlock() -> void {
-    currentBlock.rotate();
-    if(isBlockOutside()) {
-        currentBlock.undoRotation();
+    if(!gameOver) {
+        currentBlock.rotate();
+        if(isBlockOutside()) {
+            currentBlock.undoRotation();
+        }
     }
 };
 
@@ -101,6 +114,9 @@ auto Game::lockBlock() -> void {
         grid.grid[item.row][item.column] = 2;
     }
     currentBlock = nextBlock;
+    if(!blockFits()) {
+        gameOver = true;
+    }
     nextBlock = getRandomBlock();
     grid.clearFullRows();
 }
@@ -113,6 +129,13 @@ auto Game::blockFits() -> bool {
        }
     }
     return true;
+}
+
+auto Game::reset() -> void {
+    grid.initGrid();
+    tetrominos = getAllBlocks();
+    currentBlock = getRandomBlock();
+    nextBlock = getRandomBlock();
 }
 
 

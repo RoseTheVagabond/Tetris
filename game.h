@@ -13,6 +13,7 @@ public:
     void moveBlockLeft();
     void moveBlockRight();
     void moveBlockDown();
+    bool gameOver;
 private:
     std::vector<Block> tetrominos;
     Block currentBlock;
@@ -21,4 +22,5 @@ private:
     void rotateBlock();
     void lockBlock();
     bool blockFits();
+    void reset();
 };

@@ -5,7 +5,7 @@
 5. Rotate blocks - done
 6. Checking for collisions - done
 7. Checking full rows - done
-8. Game over
+8. Game over - done
 9. UI
 10. Score
 11. Next Block
