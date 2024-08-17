@@ -11,6 +11,7 @@ public:
     std::map<int, std::vector<Position>> cells;
     void draw();
     void move(int rows, int columns);
+    std::vector<Position> getCellPositions();
 private:
     int cellSize;
     int rotation;
