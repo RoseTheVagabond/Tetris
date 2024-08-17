@@ -19,7 +19,12 @@ Block Game::getRandomBlock() {
 }
 
 std::vector<Block> Game::getAllBlocks() {
-    return {IMino(), JMino(), LMino(), OMino(), SMino(), TMino(), ZMino()};
+    std::vector<Block> blocks = {IMino(), JMino(), LMino(), OMino(), SMino(), TMino(), ZMino()};
+
+    std::random_device rd;
+    std::default_random_engine rng(rd());
+    std::shuffle(blocks.begin(), blocks.end(), rng);
+    return blocks;
 }
 
 void Game::draw() {
@@ -47,12 +52,31 @@ void Game::handleInput() {
 
 void Game::moveBlockLeft() {
     currentBlock.move(0,-1);
+    if(isBlockOutside()) {
+        currentBlock.move(0, 1);
+    }
 }
 
 void Game::moveBlockRight() {
     currentBlock.move(0, 1);
+    if(isBlockOutside()) {
+        currentBlock.move(0, -1);
+    }
 }
 
 void Game::moveBlockDown() {
     currentBlock.move(1, 0);
+    if(isBlockOutside()) {
+        currentBlock.move(-1, 0);
+    }
+}
+
+bool Game::isBlockOutside() {
+    std::vector<Position> tiles = currentBlock.getCellPositions();
+    for(Position item : tiles) {
+        if(grid.isCellOutside(item.row, item.column)) {
+            return true;
+        }
+    }
+    return false;
 }

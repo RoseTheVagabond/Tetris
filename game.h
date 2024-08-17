@@ -17,4 +17,5 @@ private:
     std::vector<Block> tetrominos;
     Block currentBlock;
     Block nextBlock;
+    bool isBlockOutside();
 };
