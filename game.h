@@ -18,4 +18,5 @@ private:
     Block currentBlock;
     Block nextBlock;
     bool isBlockOutside();
+    void rotateBlock();
 };

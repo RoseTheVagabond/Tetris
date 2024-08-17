@@ -8,7 +8,7 @@ Game::Game() {
     nextBlock = getRandomBlock();
 }
 
-Block Game::getRandomBlock() {
+auto Game::getRandomBlock() -> Block{
     if(tetrominos.empty()) {
         tetrominos = getAllBlocks();
     }
@@ -18,7 +18,7 @@ Block Game::getRandomBlock() {
     return mino;
 }
 
-std::vector<Block> Game::getAllBlocks() {
+auto Game::getAllBlocks() -> std::vector<Block>{
     std::vector<Block> blocks = {IMino(), JMino(), LMino(), OMino(), SMino(), TMino(), ZMino()};
 
     std::random_device rd;
@@ -27,12 +27,12 @@ std::vector<Block> Game::getAllBlocks() {
     return blocks;
 }
 
-void Game::draw() {
+auto Game::draw() -> void{
     grid.draw();
     currentBlock.draw();
 }
 
-void Game::handleInput() {
+auto Game::handleInput() -> void {
     int keyPressed = GetKeyPressed();
     switch(keyPressed) {
         case KEY_LEFT:
@@ -47,31 +47,36 @@ void Game::handleInput() {
         case KEY_S:
             moveBlockDown();
             break;
+        case KEY_UP:
+        case KEY_W:
+            rotateBlock();
+            break;
+
     }
 }
 
-void Game::moveBlockLeft() {
+auto Game::moveBlockLeft() -> void{
     currentBlock.move(0,-1);
     if(isBlockOutside()) {
         currentBlock.move(0, 1);
     }
 }
 
-void Game::moveBlockRight() {
+auto Game::moveBlockRight() -> void {
     currentBlock.move(0, 1);
     if(isBlockOutside()) {
         currentBlock.move(0, -1);
     }
 }
 
-void Game::moveBlockDown() {
+auto Game::moveBlockDown() -> void{
     currentBlock.move(1, 0);
     if(isBlockOutside()) {
         currentBlock.move(-1, 0);
     }
 }
 
-bool Game::isBlockOutside() {
+auto Game::isBlockOutside() -> bool {
     std::vector<Position> tiles = currentBlock.getCellPositions();
     for(Position item : tiles) {
         if(grid.isCellOutside(item.row, item.column)) {
@@ -80,3 +85,10 @@ bool Game::isBlockOutside() {
     }
     return false;
 }
+
+auto Game::rotateBlock() -> void {
+    currentBlock.rotate();
+    if(isBlockOutside()) {
+        currentBlock.undoRotation();
+    }
+};

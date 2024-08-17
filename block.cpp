@@ -15,12 +15,12 @@ auto Block::draw() -> void {
     }
 }
 
-void Block::move(int rows, int columns) {
+auto Block::move(int rows, int columns) -> void{
     rowOffset += rows;
     columnOffset += columns;
 }
 
-std::vector<Position> Block::getCellPositions() {
+auto Block::getCellPositions() -> std::vector<Position>{
     std::vector<Position> tiles = cells[rotation];
     std::vector<Position> movedTiles;
 
@@ -30,3 +30,18 @@ std::vector<Position> Block::getCellPositions() {
     }
     return movedTiles;
 }
+
+auto Block::rotate() -> void {
+    rotation++;
+    if(rotation == cells.size()) {
+        rotation = 0;
+    }
+}
+
+auto Block::undoRotation() -> void {
+    rotation--;
+    if(rotation < 0) {
+        rotation = cells.size() - 1;
+    }
+}
+
