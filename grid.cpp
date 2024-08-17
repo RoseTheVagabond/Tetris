@@ -46,3 +46,38 @@ auto Grid::isCellEmpty(int row, int column) -> bool {
         return false;
     }
 }
+
+auto Grid::isRowFull(int row) -> bool {
+    for(int column = 0; column < numColumns; column++) {
+        if(grid[row][column] == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+auto Grid::clearRow(int row) -> void {
+    for(int column = 0; column < numColumns; column++) {
+        grid[row][column] = 0;
+    }
+}
+
+auto Grid::moveRowDown(int row, int numRows) -> void {
+    for(int column = 0; column < numColumns; column++) {
+        grid[row + numRows][column] = grid[row][column];
+        grid[row][column] = 0;
+    }
+}
+
+auto Grid::clearFullRows() -> int {
+    int completed = 0;
+    for(int row = numRows - 1; row >= 0; row--) {
+        if(isRowFull(row)) {
+            clearRow(row);
+            completed++;
+        } else if(completed > 0) {
+            moveRowDown(row, completed);
+        }
+    }
+    return completed;
+}

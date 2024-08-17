@@ -12,8 +12,12 @@ public:
     std::vector<Color> colors;
     bool isCellOutside(int row, int column);
     bool isCellEmpty(int row, int column);
+    int clearFullRows();
 private:
     int numRows;
     int numColumns;
     int cellSize;
+    bool isRowFull(int row);
+    void clearRow(int row);
+    void moveRowDown(int row, int numRows);
 };

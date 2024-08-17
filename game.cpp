@@ -102,6 +102,7 @@ auto Game::lockBlock() -> void {
     }
     currentBlock = nextBlock;
     nextBlock = getRandomBlock();
+    grid.clearFullRows();
 }
 
 auto Game::blockFits() -> bool {
