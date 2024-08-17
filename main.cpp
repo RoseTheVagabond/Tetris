@@ -11,7 +11,7 @@ auto main() -> int {
 
     Grid grid = Grid();
 
-    OMino block = OMino();
+    IMino block = IMino();
 
     while(!WindowShouldClose()) {
         BeginDrawing();
