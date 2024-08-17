@@ -38,3 +38,11 @@ auto Grid::isCellOutside(int row, int column) -> bool {
     }
     return true;
 }
+
+auto Grid::isCellEmpty(int row, int column) -> bool {
+    if(grid[row][column] == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}

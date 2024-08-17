@@ -57,22 +57,23 @@ auto Game::handleInput() -> void {
 
 auto Game::moveBlockLeft() -> void{
     currentBlock.move(0,-1);
-    if(isBlockOutside()) {
+    if(isBlockOutside() || !blockFits()) {
         currentBlock.move(0, 1);
     }
 }
 
 auto Game::moveBlockRight() -> void {
     currentBlock.move(0, 1);
-    if(isBlockOutside()) {
+    if(isBlockOutside() || !blockFits()) {
         currentBlock.move(0, -1);
     }
 }
 
 auto Game::moveBlockDown() -> void{
     currentBlock.move(1, 0);
-    if(isBlockOutside()) {
+    if(isBlockOutside() || !blockFits()) {
         currentBlock.move(-1, 0);
+        lockBlock();
     }
 }
 
@@ -92,3 +93,41 @@ auto Game::rotateBlock() -> void {
         currentBlock.undoRotation();
     }
 };
+
+auto Game::lockBlock() -> void {
+    std::vector<Position> tiles = currentBlock.getCellPositions();
+
+    for(Position item : tiles) {
+        grid.grid[item.row][item.column] = 2;
+    }
+    currentBlock = nextBlock;
+    nextBlock = getRandomBlock();
+}
+
+auto Game::blockFits() -> bool {
+    std::vector<Position> tiles = currentBlock.getCellPositions();
+    for(Position item : tiles) {
+       if(!grid.isCellEmpty(item.row, item.column)) {
+           return false;
+       }
+    }
+    return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
