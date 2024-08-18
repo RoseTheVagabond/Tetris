@@ -31,7 +31,8 @@ auto Game::getAllBlocks() -> std::vector<Block>{
 
 auto Game::draw() -> void{
     grid.draw();
-    currentBlock.draw();
+    currentBlock.draw(11, 11);
+    nextBlock.draw(270, 310);
 }
 
 auto Game::handleInput() -> void {
