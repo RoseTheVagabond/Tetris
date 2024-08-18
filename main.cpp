@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include "game.h"
+#include <iostream>
 
 //auto lastUpdateTime = 0;
 //
@@ -48,6 +49,10 @@ auto main() -> int {
 
         DrawTextEx(font, "Score", {355, 55}, 38, 2, WHITE);
         DrawRectangleRounded({320, 95, 170, 60}, 0.3, 6, colors[1]);
+        char scoreText[10];
+        sprintf(scoreText, "%d", game.score);
+        Vector2 textSize = MeasureTextEx(font, scoreText, 38, 2);
+        DrawTextEx(font, scoreText, {320 + (170 - textSize.x)/2, 105}, 38, 2, WHITE);
 
         DrawTextEx(font, "Next", {370, 215}, 38, 2, WHITE);
         DrawRectangleRounded({320, 255, 170, 180}, 0.3, 6, colors[1]);

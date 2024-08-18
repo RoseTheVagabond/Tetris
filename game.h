@@ -14,6 +14,7 @@ public:
     void moveBlockRight();
     void moveBlockDown();
     bool gameOver;
+    int score;
 private:
     std::vector<Block> tetrominos;
     Block currentBlock;
@@ -23,4 +24,5 @@ private:
     void lockBlock();
     bool blockFits();
     void reset();
+    void updateScore(int linesCleared, int moveDownPoints);
 };
