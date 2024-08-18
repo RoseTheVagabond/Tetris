@@ -32,7 +32,18 @@ auto Game::getAllBlocks() -> std::vector<Block>{
 auto Game::draw() -> void{
     grid.draw();
     currentBlock.draw(11, 11);
-    nextBlock.draw(270, 310);
+    switch(nextBlock.id) {
+        case 3:
+            nextBlock.draw(255, 330);
+            break;
+        case 4:
+            nextBlock.draw(255, 320);
+            break;
+        default:
+            nextBlock.draw(270, 310);
+            break;
+
+    }
 }
 
 auto Game::handleInput() -> void {
