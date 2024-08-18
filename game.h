@@ -4,21 +4,25 @@
 
 class Game {
 public:
-    Game();
-    Grid grid;
-    Block getRandomBlock();
-    std::vector<Block> getAllBlocks();
-    void draw();
-    void handleInput();
-    void moveBlockLeft();
-    void moveBlockRight();
-    void moveBlockDown();
     bool gameOver;
     int score;
+    Music music;
+    Sound rotateSound;
+    Sound clearSound;
+    Game();
+    ~Game();
+    void draw();
+    void handleInput();
+    void moveBlockDown();
 private:
     std::vector<Block> tetrominos;
     Block currentBlock;
     Block nextBlock;
+    Grid grid;
+    Block getRandomBlock();
+    std::vector<Block> getAllBlocks();
+    void moveBlockLeft();
+    void moveBlockRight();
     bool isBlockOutside();
     void rotateBlock();
     void lockBlock();

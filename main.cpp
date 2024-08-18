@@ -40,6 +40,7 @@ auto main() -> int {
     Game game = Game();
 
     while(!WindowShouldClose()) {
+        UpdateMusicStream(game.music);
         game.handleInput();
         if(eventTriggered(0.4)) {
             game.moveBlockDown();

@@ -8,6 +8,18 @@ Game::Game() {
     nextBlock = getRandomBlock();
     gameOver = false;
     score = 0;
+    InitAudioDevice();
+    music = LoadMusicStream("/Users/rubyrover/Desktop/PJATK/PJC/Tetris/sounds/music.mp3");
+    PlayMusicStream(music);
+    rotateSound = LoadSound("/Users/rubyrover/Desktop/PJATK/PJC/Tetris/sounds/rotate.mp3");
+    clearSound = LoadSound("/Users/rubyrover/Desktop/PJATK/PJC/Tetris/sounds/clear.mp3");
+}
+
+Game::~Game() {
+    UnloadSound(rotateSound);
+    UnloadSound(clearSound);
+    UnloadMusicStream(music);
+    CloseAudioDevice();
 }
 
 auto Game::getRandomBlock() -> Block{
@@ -117,6 +129,8 @@ auto Game::rotateBlock() -> void {
         currentBlock.rotate();
         if(isBlockOutside()) {
             currentBlock.undoRotation();
+        } else {
+            PlaySound(rotateSound);
         }
     }
 };
@@ -133,7 +147,10 @@ auto Game::lockBlock() -> void {
     }
     nextBlock = getRandomBlock();
     int rowsCleared = grid.clearFullRows();
-    updateScore(rowsCleared, 0);
+    if(rowsCleared > 0) {
+        PlaySound(clearSound);
+        updateScore(rowsCleared, 0);
+    }
 }
 
 auto Game::blockFits() -> bool {
