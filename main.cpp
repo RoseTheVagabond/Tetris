@@ -30,9 +30,11 @@ auto eventTriggered(double interval) -> bool {
 
 auto main() -> int {
 
-    InitWindow(300, 600, "Tetris");
+    InitWindow(500, 620, "Tetris");
     SetTargetFPS(60);
     auto colors = getCellColours();
+
+    Font font = LoadFontEx("videophreak.ttf", 64, 0, 0);
 
     Game game = Game();
 
@@ -43,6 +45,17 @@ auto main() -> int {
         }
         BeginDrawing();
         ClearBackground(colors[4]);
+
+        DrawTextEx(font, "Score", {355, 55}, 38, 2, WHITE);
+        DrawRectangleRounded({320, 95, 170, 60}, 0.3, 6, colors[1]);
+
+        DrawTextEx(font, "Next", {370, 215}, 38, 2, WHITE);
+        DrawRectangleRounded({320, 255, 170, 180}, 0.3, 6, colors[1]);
+
+        if(game.gameOver) {
+            DrawTextEx(font, "GAME OVER", {320, 490}, 28, 2, WHITE);
+        }
+
         game.draw();
         EndDrawing();
     }

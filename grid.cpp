@@ -27,7 +27,7 @@ auto Grid::print() -> void {
 auto Grid::draw() -> void {
     for(int i = 0; i < numRows; i++) {
         for(int j = 0; j < numColumns; j++) {
-            DrawRectangle(j * cellSize + 1, i * cellSize + 1, cellSize - 1, cellSize - 1, colors[grid[i][j]]);
+            DrawRectangle(j * cellSize + 11, i * cellSize + 11, cellSize - 1, cellSize - 1, colors[grid[i][j]]);
         }
     }
 }

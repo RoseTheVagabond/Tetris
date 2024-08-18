@@ -11,7 +11,7 @@ Block::Block() {
 auto Block::draw() -> void {
     std::vector<Position> tiles = getCellPositions();
     for(Position item : tiles) {
-        DrawRectangle(item.column * cellSize + 1, item.row * cellSize + 1, cellSize - 2, cellSize - 2, colors[3]);
+        DrawRectangle(item.column * cellSize + 11, item.row * cellSize + 11, cellSize - 2, cellSize - 2, colors[3]);
     }
 }
 
